@@ -45,9 +45,8 @@ tweets = pd.DataFrame(tweets_list, columns=['Datetime', 'Tweet Id', 'Content', '
                                             'Retweet count', 'Like count', 'Language', 'Source'])
 
 # Show the data in table form
-with st.container():
-    st.title("Twitter data scraper")
-    st.dataframe(tweets)
+st.title("Twitter data scraper")
+st.dataframe(tweets)
 
 # Caching the data
 
