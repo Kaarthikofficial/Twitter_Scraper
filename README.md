@@ -19,3 +19,12 @@ This project is done with the vision to scrape data from twitter by using keywor
 - Streamlit
 - Snscrape
 - Mongodb
+
+## To run the same locally
+- Install python in your system and create a path in environment 
+  by using edit environment variables in control panel or settings.
+- Now download the scraper file in my repository along with requirements file.
+- Open the folder where you downloaded the file and run cmd in the path
+- By using the command prompt, run pip install -r requirements.txt. Once after
+  that, type streamlit run (downloaded file name).py and enter
+- Now, you will get the app ready in your browser  
