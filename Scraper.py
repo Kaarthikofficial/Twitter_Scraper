@@ -45,8 +45,9 @@ tweets = pd.DataFrame(tweets_list, columns=['Datetime', 'Tweet Id', 'Content', '
                                             'Retweet count', 'Like count', 'Language', 'Source'])
 
 # Show the data in table form
-st.title("Twitter data scraper")
-st.dataframe(tweets)
+with st.container():
+    st.title("Twitter data scraper")
+    st.dataframe(tweets)
 
 # Caching the data
 
@@ -56,27 +57,30 @@ def convert_csv(df):
     return df.to_csv()
 
 
+c1, c2 = st.columns([4, 1])
 if not tweets.empty:
-    # Download as csv
-    csv = tweets.to_csv()
-    st.download_button(label='Download CSV', data=csv, file_name="Tweets.csv", mime='text/csv')
+    with c1:
+        # Download as csv
+        csv = tweets.to_csv()
+        st.download_button(label='Download CSV', data=csv, file_name="Tweets.csv", mime='text/csv')
 
-    # Download as json
-    json_file = tweets.to_json(orient='records')
-    st.download_button(label='Download JSON', data=json_file, file_name="Tweets.json", mime='application/json')
+        # Download as json
+        json_file = tweets.to_json(orient='records')
+        st.download_button(label='Download JSON', data=json_file, file_name="Tweets.json", mime='application/json')
 
-    # Upload data to mongodb
-    if st.button('Upload'):
-        col = key_or_hash
-        col = col.replace(' ', '_')+'_Tweets'
-        collection = db[col]
-        data_dict = tweets.to_dict("records")
-        if data_dict:
-            collection.create_index('Tweet Id', unique=True)
-            collection.insert_many(data_dict)
-            st.success('Successfully uploaded into database', icon="✅")
-        else:
-            st.warning('No data to upload', icon="⚠")
+    with c2:
+        # Upload data to mongodb
+        if st.button('Upload'):
+            col = key_or_hash
+            col = col.replace(' ', '_')+'_Tweets'
+            collection = db[col]
+            data_dict = tweets.to_dict("records")
+            if data_dict:
+                collection.create_index('Tweet Id', unique=True)
+                collection.insert_many(data_dict)
+                st.success('Successfully uploaded into database', icon="✅")
+            else:
+                st.warning('No data to upload', icon="⚠")
 
 else:
     st.warning("No data to download", icon="⚠")
