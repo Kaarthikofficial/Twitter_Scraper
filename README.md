@@ -27,4 +27,9 @@ This project is done with the vision to scrape data from twitter by using keywor
 - Open the folder where you downloaded the file and run cmd in the path
 - By using the command prompt, run pip install -r requirements.txt. Once after
   that, type streamlit run (downloaded file name).py and enter
-- Now, you will get the app ready in your browser  
+- Now, you will get the app ready in your browser
+- If you wish to upload in your local database. You can make use of upload button available
+
+### Following is the link for my app
+https://kaarthikofficial-twitter-scraper-scraper-joa2hn.streamlit.app/
+***You can only download the data since uploading into database will redirect to the local db which is mongodb***
